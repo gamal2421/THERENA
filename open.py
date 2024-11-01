@@ -1,26 +1,18 @@
 import subprocess
 import time
-import webbrowser
 import pyautogui
 import os
 
 from sounds import play_here_is_your_mus
-def open_chrome(search_query=""):
-    """Open Google Chrome and optionally perform a search."""
-    chrome_path = r"C:\Program Files\Google\Chrome\Application\chrome.exe"  # Adjust path if needed
+def open_chrome():
+    chrome_path = r"C:\Program Files\Google\Chrome\Application\chrome.exe"  
+    subprocess.Popen(chrome_path)
 
-    if os.path.exists(chrome_path):
-        if search_query:
-            # Format search query into a Google search URL
-            url = f"https://www.google.com/search?q={search_query.replace(' ', '+')}"
-            # Use Chrome to open the search URL
-            webbrowser.register('chrome', None, webbrowser.BackgroundBrowser(chrome_path))
-            webbrowser.get('chrome').open_new_tab(url)
-        else:
-            # Just open Chrome without a search if no query is provided
-            subprocess.Popen(chrome_path)
-    else:
-        print("Chrome not found.")
+def open_search_google(user_input):
+    open_chrome()
+    time.sleep(5)
+    pyautogui.write(user_input)
+    pyautogui.press('enter')  
 
 
 
@@ -41,11 +33,6 @@ def play_music():
 
 
 
-def open_whatsapp():
-    """Open WhatsApp desktop application."""
-    whatsapp_path = r"C:\Users\ZTS\AppData\Local\WhatsApp\WhatsApp.exe"
-    if os.path.exists(whatsapp_path):
-        subprocess.Popen(whatsapp_path)
 
 def open_spotify():
     """Open Spotify application."""
@@ -69,16 +56,17 @@ def sleep_pc():
     except Exception as e:
         print(f"Failed to put the computer to sleep: {e}")
 
+
 def open_app(app_name):
     """Open an application based on the provided name."""
     try:
         if "spotify" in app_name.lower():
             play_music()
-        elif "whatsapp" in app_name.lower():
-            open_whatsapp()
         elif "chrome" in app_name.lower() or "google" in app_name.lower():
-            open_chrome()
+            search_for = app_name.replace("chrome and search for", "").strip()
+            open_search_google(search_for)
         else:
             print(f"Sorry, I don't know how to open '{app_name}'.")
     except Exception as e:
         print(f"Error opening app: {e}")
+
