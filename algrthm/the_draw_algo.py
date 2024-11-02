@@ -47,17 +47,40 @@ def draw_triangle():
     pyautogui.dragTo(x2, y2, duration=0.1)  # First side
     pyautogui.dragTo(x3, y3, duration=0.1)  # Second side
     pyautogui.dragTo(x1, y1, duration=0.1)  # Third side to complete the triangle
-
 def draw_nrm_cube():
     open_print()
-    time.sleep(5)
+    time.sleep(5)  # Wait for Paint to open
+
+    # Starting coordinates for the cube
     x_start, y_start = 500, 300
     side_length = 100  # Length of the cube's sides
-    pyautogui.moveTo(x_start, y_start)
-    pyautogui.dragTo(x_start + side_length, y_start , duration=0)  # Top line
-    pyautogui.dragTo(x_start + side_length, y_start + side_length, duration=0)  # Right line
-    pyautogui.dragTo(x_start, y_start + side_length, duration=0)  # Bottom line
-    pyautogui.dragTo(x_start, y_start, duration=0)  # Left line
 
+    # Draw the front square of the cube
+    pyautogui.moveTo(x_start, y_start)
+    pyautogui.dragTo(x_start + side_length, y_start, duration=0.1)  # Top line
+    pyautogui.dragTo(x_start + side_length, y_start + side_length, duration=0.1)  # Right line
+    pyautogui.dragTo(x_start, y_start + side_length, duration=0.1)  # Bottom line
+    pyautogui.dragTo(x_start, y_start, duration=0.1)  # Left line
+
+    # Draw the back square of the cube, slightly offset
+    offset = 30  # Offset for the 3D effect
+    pyautogui.moveTo(x_start + offset, y_start - offset)
+    pyautogui.dragTo(x_start + side_length + offset, y_start - offset, duration=0.1)  # Top line
+    pyautogui.dragTo(x_start + side_length + offset, y_start + side_length - offset, duration=0.1)  # Right line
+    pyautogui.dragTo(x_start + offset, y_start + side_length - offset, duration=0.1)  # Bottom line
+    pyautogui.dragTo(x_start + offset, y_start - offset, duration=0.1)  # Left line
+
+    # Connect the corners to complete the cube
+    pyautogui.moveTo(x_start, y_start)
+    pyautogui.dragTo(x_start + offset, y_start - offset, duration=0.1)  # Top-left corner
+
+    pyautogui.moveTo(x_start + side_length, y_start)
+    pyautogui.dragTo(x_start + side_length + offset, y_start - offset, duration=0.1)  # Top-right corner
+
+    pyautogui.moveTo(x_start + side_length, y_start + side_length)
+    pyautogui.dragTo(x_start + side_length + offset, y_start + side_length - offset, duration=0.1)  # Bottom-right corner
+
+    pyautogui.moveTo(x_start, y_start + side_length)
+    pyautogui.dragTo(x_start + offset, y_start + side_length - offset, duration=0.1)  # Bottom-left corner
 
 
