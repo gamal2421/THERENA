@@ -47,6 +47,7 @@ def draw_triangle():
     pyautogui.dragTo(x2, y2, duration=0.1)  # First side
     pyautogui.dragTo(x3, y3, duration=0.1)  # Second side
     pyautogui.dragTo(x1, y1, duration=0.1)  # Third side to complete the triangle
+
 def draw_nrm_cube():
     open_print()
     time.sleep(5)  # Wait for Paint to open
@@ -82,5 +83,5 @@ def draw_nrm_cube():
 
     pyautogui.moveTo(x_start, y_start + side_length)
     pyautogui.dragTo(x_start + offset, y_start + side_length - offset, duration=0.1)  # Bottom-left corner
-
-
+#def reco_of_your_drw(arr[]):
+#    x ,y = 0,0

@@ -17,6 +17,7 @@ def open_search_google(user_input):
 
 
 
+
 def play_music():
     """Play music in Spotify."""
     try:
@@ -47,7 +48,6 @@ def play_game():
         subprocess.Popen(game_path)
    
    
-   
 
 def sleep_pc():
     """Put the computer to sleep."""
@@ -66,7 +66,10 @@ def open_app(app_name):
             search_for = app_name.replace("chrome and search for", "").strip()
             open_search_google(search_for)
         else:
-            print(f"Sorry, I don't know how to open '{app_name}'.")
+            print(f"Sorry, I don't know how to open '{app_name}' so i search for it on your pc.")
+            pyautogui.press('winright')
+            pyautogui.write(app_name)
+            time.sleep(2)
+            pyautogui.press('enter')
     except Exception as e:
         print(f"Error opening app: {e}")
-

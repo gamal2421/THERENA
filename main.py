@@ -1,7 +1,8 @@
 import speech_recognition as sr
 import pyttsx3
-import time
 
+
+from algrthm.mathop import process_math_operation
 import algrthm.the_draw_algo
 # Importing custom modules
 from sounds import *
@@ -44,8 +45,6 @@ def main():
             draw_obj = user_input.replace("draw","").strip().lower()
             if "rectangle" in draw_obj:
                 algrthm.the_draw_algo.draw_rectangle()
-            elif "3D_cube" in draw_obj:
-                algrthm.the_draw_algo.draw_3D_cube()
             elif "triangle" in draw_obj:
                 algrthm.the_draw_algo.draw_triangle()
             elif "cube" in draw_obj:
@@ -61,8 +60,14 @@ def main():
             elif "music" in app_name:
                 play_music()
 
-
-
+        elif "math" in user_input:
+            math_op = user_input.replace("math", "").strip()
+            result = process_math_operation(math_op)
+            if result is not None:
+                speak(f"The result is {result}")
+            else:
+                speak("I couldn't understand the math operation.")
+                
 
         elif "open" in user_input:
             app_name = user_input.replace("open", "").strip()
@@ -86,5 +91,3 @@ def main():
 
     except Exception as e:
         print(f"An error occurred: {e}")
-
-main()

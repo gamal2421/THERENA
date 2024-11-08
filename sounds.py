@@ -1,7 +1,9 @@
 import pygame
 pygame.mixer.init()
 def play_sound(file_path):
+
     """Play a sound file."""
+    
     try:
         pygame.mixer.music.load(file_path)
         pygame.mixer.music.play()
